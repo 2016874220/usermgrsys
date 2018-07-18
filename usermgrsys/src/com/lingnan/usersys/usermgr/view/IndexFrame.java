@@ -112,8 +112,9 @@ public class IndexFrame implements BaseFrame{
 		if("注册".equals(type)){
 			System.out.println("用户注册界面");
 			System.out.println("====================");
-		}else{
-			
+		}else if("添加用户".equals(type)){
+			System.out.println("添加用户界面");
+			System.out.println("====================");
 		}
 		System.out.println("请输入用户名：");
 		try{

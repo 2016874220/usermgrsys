@@ -1,5 +1,7 @@
 package com.lingnan.usersys.usermgr.controller;
 
+import java.util.Vector;
+
 import com.lingnan.usersys.usermgr.business.service.UserService;
 import com.lingnan.usersys.usermgr.business.service.UserServiceImpl;
 import com.lingnan.usersys.usermgr.domain.UserVO;
@@ -68,6 +70,24 @@ public class UserController
 	}
 	
 	/**
+	 * 删除用户
+	 * @param id 用户编号
+	 * @return 成功返回true；失败返回false
+	 */
+	public boolean doDelete(int id){
+		boolean flag = false;
+		try
+		{
+			flag = userMgrService.deleteUser(id);
+		}
+		catch (Exception e)
+		{
+			System.out.println("删除用户时出现错误"+e.getMessage());
+		}
+		return flag;
+	}
+	
+	/**
 	 * 根据id查询用户
 	 * @param id 用户编号
 	 * @return 用户信息
@@ -82,5 +102,56 @@ public class UserController
 			System.out.println("根据id查询用户时出现错误："+e.getMessage());
 		}
 		return user;
+	}
+	
+	/**
+	 * 根据用户名查询用户
+	 * @param name 用户名
+	 * @return 用户信息
+	 */
+	public Vector<UserVO> doFindUserByName(String name){
+		Vector<UserVO> v =null;
+		try{
+			//调用用户service接口中的login方法，进行用户登录操作
+			v = userMgrService.findUserByName(name);
+		}catch(Exception e){
+			//显示异常信息
+			System.out.println("根据用户名查询用户时出现错误："+e.getMessage());
+		}
+		return v;
+	}
+	
+	/**
+	 * 查询所有用户
+	 * @return 用户信息
+	 */
+	public Vector<UserVO> doFindAll(){
+		Vector<UserVO> v =null;
+		try{
+			//调用用户service接口中的login方法，进行用户登录操作
+			v = userMgrService.findAll();
+		}catch(Exception e){
+			//显示异常信息
+			System.out.println("查询用户时出现错误："+e.getMessage());
+		}
+		return v;
+	}
+	
+	/**
+	 * 根据id更新用户
+	 * @param id 用户编号
+	 * @return 成功返回true；失败返回false
+	 */
+	public boolean doUpdate(UserVO user,int userid){
+		boolean flag = false;
+		try
+		{
+			flag = userMgrService.updateUser(user,userid);
+		}
+		catch (Exception e)
+		{
+			System.out.println("修改用户时出现错误"+e.getMessage());
+		}
+		return flag;
 	}
 }

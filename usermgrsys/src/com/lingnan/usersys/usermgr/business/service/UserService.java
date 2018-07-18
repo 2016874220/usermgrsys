@@ -1,6 +1,7 @@
 package com.lingnan.usersys.usermgr.business.service;
 
 import java.util.List;
+import java.util.Vector;
 
 import com.lingnan.usersys.usermgr.domain.UserVO;
 
@@ -27,6 +28,13 @@ public interface UserService
 	public boolean addUser(UserVO user);
 	
 	/**
+	 * 删除用户
+	 * @param id 用户编号
+	 * @return 成功返回true；失败返回false
+	 */
+	public boolean deleteUser(int id);
+	
+	/**
 	 * 根据id查找用户
 	 * @param id 用户编号
 	 * @return 用户信息
@@ -38,27 +46,20 @@ public interface UserService
 	 * @param name 用户名
 	 * @return 用户信息
 	 */
-	public List<UserVO> findUserByName(String name);
+	public Vector<UserVO> findUserByName(String name);
 	
 	/**
 	 * 查询所有用户
 	 * @return 用户信息
 	 */
-	public List<UserVO> findAll();
+	public Vector<UserVO> findAll();
 	
 	/**
-	 * 更新用户
-	 * @param user 用户信息
-	 * @return 成功返回true；失败返回false
-	 */
-	public boolean updateUser(UserVO user);
-	
-	/**
-	 * 删除用户
+	 * 根据id更新用户
 	 * @param id 用户编号
 	 * @return 成功返回true；失败返回false
 	 */
-	public boolean daleteUser(int id);
+	public boolean updateUser(UserVO user,int userid);
 	
 	/**
 	 * 获取指定页的用户信息

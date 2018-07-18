@@ -25,7 +25,6 @@ public class CheckMailUtils
 		Matcher m = p.matcher(mail);
 		boolean b = m.matches();
 		if(b) {
-			System.out.println("有效邮件地址"); 
 			isExist=true; 
 			}
 		else {
