@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	
+<head>
+		<meta charset="GB2312">
+		<title>登录</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/font-awesome.min.css" />
+	</head>
+	<body>
+		<div class="wrap login_wrap">
+			<div class="content">
+				<div class="logo"></div>
+				<div class="login_box">	
+					
+					<div class="login_form">
+						<div class="login_title">
+							登录
+						</div>
+						<form action="loginServlet" method="get">
+							<div class="form_text_ipt">
+								<input name="userid" type="text" placeholder="账号">
+							</div>
+							<div class="ececk_warning"><span>账号不能为空</span></div>
+							<div class="form_text_ipt">
+								<input name="password" type="password" placeholder="密码">
+							</div>
+							<div class="ececk_warning"><span>密码不能为空</span></div>
+							<div class="form_check_ipt">
+							</div>
+							<div class="form_btn">
+								<button type="submit" onclick="javascript:window.location.href='#'"><font size="3px">登录</font></button>
+							</div>
+							<br>
+							<div class="form_reg_btn">
+								<font size="3px"><span>还没有帐号？</span><a href="register.html">马上注册</a></font>
+							</div>
+							<br><br>
+						</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+		<script type="text/javascript" src="js/common.js" ></script>
+	</body>
+</html>

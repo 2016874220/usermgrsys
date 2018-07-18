@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="GB2312">
+<title>注册</title>
+<link rel="stylesheet" href="css/reset.css" />
+<link rel="stylesheet" href="css/common.css" />
+<link rel="stylesheet" href="css/font-awesome.min.css" />
+<!-- 验证功能（如果没有填写，会弹出alert提示，并且自动把焦点切换到对应的输入框，用户就不用再用鼠标点那个框输入了） -->
+<script>
+	function check()
+	{
+		if(form.userid.value=="")
+			{
+				alert("账号不能为空");
+				form.userid.focus();
+				return false;
+			}
+		if(form.username.value=="")
+		{
+			alert("用户名不能为空");
+			form.username.focus();
+			return false;
+		}
+		var regm1 = /^[a-zA-Z_]+[a-zA-Z0-9]+$/
+		if(!form.username.value.match(regm1))
+		{
+			alert("用户名不合法！用户名只能由字母、下划线或数字构成，并且只能以字母或下划线开头")
+			form.username.focus();
+			return false;
+		}
+		if(form.password.value=="")
+		{
+			alert("密码不能为空");
+			form.password.focus();
+			return false;
+		}
+		if(form.repassword.value=="")
+		{
+			alert("密码的重复不能为空");
+			form.repassword.focus();
+			return false;
+		}
+		if(form.superuser.value=="")
+		{
+			alert("请选择您的身份");
+			return false;
+		}
+	}
+	
+/*
+ * Ajax 基于XML的异步JavaScript（实现异步刷新功能）
+ */
+ function createXmlHttpRequest(){
+	    var xmlreq = false;
+	    if (window.XMLHttpRequest){
+	        xmlreq = new XMLHttpRequest();
+	    }else
+	        if (window.ActiveXObject){
+	    	try{
+	    	    xmlreq = new ActiveXObject("Msxml2.XMLHTTP");
+	    	}catch(e1){
+	    	    try{
+	    	        xmlreq = new ActiveXObject("Microsoft.XMLHTTP");
+	    	    }catch(e2){
+	    	    }
+	    	}
+	    }
+	    return xmlreq;   	
+	}
+ function userNameCheck(){
+     var request = createXmlHttpRequest();
+     var username = document.all.username.value;
+     request.open("post","nameCheckServlet?username="+username);
+     request.send();
+     request.onreadystatechange = function(){
+ 	if(request.readyState==4){
+ 	        var value = request.responseText;
+ 	        if(value=="true"){
+ 	                document.all.username.value="该用户名已存在！";
+ 	        }
+     	}
+     }
+}
+
+</script>
+</head>
+<body>
+	<div class="wrap login_wrap">
+		<div class="content">
+
+			<div class="logo"></div>
+
+			<div class="login_box">
+
+				<div class="login_form">
+					<div class="login_title">注册</div>
+					<form action="registerServlet" method="get" name="form">
+						<div class="form_text_ipt">
+							<input id="userid" name="userid" type="text" placeholder="账号">
+						</div>
+						<div class="ececk_warning">
+							<span>账号不能为空</span>
+						</div>
+						<div class="form_text_ipt">
+							<input id="username" name="username" type="text" placeholder="用户名" onBlur="userNameCheck()"/>
+						</div>
+						<div class="ececk_warning">
+							<span>用户名不能为空</span>
+						</div>
+						<div class="form_text_ipt">
+							<input id="password" name="password" type="password" placeholder="密码">
+						</div>
+						<div class="ececk_warning">
+							<span>密码不能为空</span>
+						</div>
+						<div class="form_text_ipt">
+							<input id="repassword" name="repassword" type="password" placeholder="重复密码">
+						</div>
+						<div class="ececk_warning">
+							<span>密码的重复不能为空</span>
+						</div>
+						<br><br>
+						<div class="form_reg_btn">
+							<font size="3px">身份</font>
+							<div style="float:right">
+							<font size="3px">商家</font>
+							<input id="superuser" type="radio" name="superuser" value="1">
+							&nbsp;&nbsp;&nbsp;
+							<font size="3px">顾客</font>
+							<input id="superuser" type="radio" name="superuser" value="2">
+						</div>
+						</div>
+						<br>
+						<div class="form_btn">
+							<!-- 注册页面的验证功能在onclick上加入 -->
+							<button type="submit" onclick="return check();">
+								<font size="3px">注册</font>
+							</button>
+						</div>
+						<br>
+						<div class="form_reg_btn">
+							<font size="3px"><span>已有帐号？</span><a href="login.html">马上登录</a></font>
+						</div>
+						<br><br>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+</body>
+</html>
